@@ -2,149 +2,217 @@
 <html>
 
 <head>
-	<title>Andrew is loser</title>
-	<link type="stylesheet/css" rel="stylesheet" href="style.css" />
-	<script language="javascript">
-	</script>
+    <title>Cookie Clickers!</title>
+    <link type="stylesheet/css" rel="stylesheet" href="style.css" />
+    <script language="javascript">
+    </script>
 </head>
 
 <body>
 
-	<h1>Cookie Clickers By: MICHAEL VALVERDE</h1>
-	<h3>Original Idea By: Orteil</h3>
+    <h1>Cookie Clickers By: MICHAEL VALVERDE</h1>
+    <h3>Original Idea By: Orteil</h3>
+    <br>
+    <br>
+    <h1 id="CookieAmount"></h1>
+    <h2 id="CookiePerSecond"></h2>
+    <div id="cookie" style="cursor:pointer" onclick="cookieClicked();">
+        <img src="http://img1.wikia.nocookie.net/__cb20130827014912/cookieclicker/images/thumb/5/5a/PerfectCookie.png/250px-PerfectCookie.png">
+    </div>
+    <!--Tells player how much Auto Clicker Costs-->
+<button onclick="getAutoClicker();">Purchase Auto Clicker for <span id="AutoClickCookieCost"></span>
+	<br><span id="AutoClickTotal"></span> owned</button>
+<button onclick="getGrandma();">Purchase Grandma for <span id="GrandmaCookieCost"></span>
+	<br><span id="GrandmaTotal"></span> owned</button>	
+<button onclick="getFarm();">Purchase Farm for <span id="FarmCookieCost"></span>
+	<br><span id="FarmTotal"></span> owned</button>
+<button onclick="getFactory();">Purchase Factory for <span id="FactoryCookieCost"></span>
+	<br><span id="FactoryTotal"></span> owned</button>
+<button onclick="getMine();">Purchase Mine for <span id="MineCookieCost"></span>
+	<br><span id="MineTotal"></span> owned</button>
 	<br>
-	<br>
-	<h1 id="CookieAmount"></h1>
-	<h2 id="CookiePerSecond"></h2>
-	<div id="cookie" style="cursor:pointer" onclick="cookieClicked();">
-		<img src="http://img1.wikia.nocookie.net/__cb20130827014912/cookieclicker/images/thumb/5/5a/PerfectCookie.png/250px-PerfectCookie.png">
-	</div>
-	<!--Tells player how much Auto Clicker Costs-->
-	<button onclick="getAutoClicker();">Purchase Auto Clicker for <span id="AutoClickCookieCost"></span>
-	</button>
-	<button onclick="getGrandma();">Purchase Grandma for <span id="GrandmaCookieCost"></span>
-	</button>
-	<button onclick="getFarm();">Purchase Farm for <span id="FarmCookieCost"></span>
-	</button>
-	<button onclick="getFactory();">Purchase Factory for <span id="FactoryCookieCost"></span>
-	</button>
-	<button onclick="getMine();">Purchase Mine for <span id="MineCookieCost"></span>
-	</button>
-
-	<div>
-		<script language="javascript">
-			//variables:
+    <button onclick="saveGame();">Save Game</button>
+	<button onclick="resetConfirm();">Reset Game</button>
+    <div>
+        <script language="javascript">
+            //Checks if variables are defined
+           
+if(typeof cookieClicks === "undefined"){
+		//If no variables are defined, the variables are defined and given a default value.
 			var cookieClicks = 0;
-			var clickValue = 1
-
+			} 
+			var cookieClicks = parseInt(localStorage.cookieClicks,10);
+if(typeof clckValue === "undefined"){
+		//If no variable is defined, variable is given value.
+			var clickValue = 1;
+}
+			var clickValue = parseInt(localStorage.clickValue,10);
+if(typeof AutoClickers === "undefined"){
+		//If no Auto Clickers defined, defaul value given.
 			var AutoClickers = 0;
+}
+			var AutoClickers = parseInt(localStorage.AutoClickers,10);
+if(typeof AutoClickerCost === "undefined"){
+		//If no Auto Clicker Cost defined, default value given.
 			var AutoClickerCost = 50;
-
+}
+			var AutoClickerCost = parseInt(localStorage.AutoClickerCost,10);
+if(typeof Grandmas === "undefined"){
+		//If no Grandma found, given default value.
 			var Grandmas = 0;
+}
+			var Grandmas = parseInt(localStorage.Grandmas, 10);
+if(typeof GrandmaCost === "undefined"){
+		//If no GrandmaCost found, given start value.
 			var GrandmaCost = 500;
-
+}
+			var GrandmaCost = parseInt(localStorage.GrandmaCost, 10);
+if(typeof Farms === "undefined"){
+		//If no Farm value found, given value of 0.
 			var Farms = 0;
-			var FarmCost = 2500
-
+}
+			var Farms = parseInt(localStorage.Farms, 10);
+if(typeof FarmCost === "undefined"){
+		//If no FarmCost is found, given default cost.
+			var FarmCost = 2500;;
+}
+			var FarmCost = parseInt(localStorage.FarmCost, 10);
+if(typeof Factories === "undefined"){
+		//If no Factories found, given default cost.
 			var Factories = 0;
+}
+			var Factories = parseInt(localStorage.Factories, 10);
+if(typeof FactoryCost === "undefined"){
+		//If no FactoryCost found, given default cost.
 			var FactoryCost = 5000;
-
-			var Mines = 0;
-			var MineCost = 10000;
-			 //Processes cookie click and adds it to total.
-			function cookieClicked() {
-				cookieClicks++;
-			}
-			 //Purchases Auto Clicker for Player and removes Cookies.
-			function getAutoClicker() {
-				if (cookieClicks >= AutoClickerCost) {
-					AutoClickers++;
-					cookieClicks -= AutoClickerCost;
-					AutoClickerCost += Math.floor(AutoClickerCost * .3);
-				} else {
-					alert("Oh No!  It appears you do not have enough cookies to purchase an Auto Clicker.  An Auto Clicker currently costs " + AutoClickerCost + " which is " + (AutoClickerCost - cookieClicks) + " more cookies than you have.")
-				}
-			}
-			 //Purchase Grandma and remove Cookie Cost.
-			function getGrandma() {
-				if (cookieClicks >= GrandmaCost) {
-					Grandmas++;
-					cookieClicks -= GrandmaCost;
-					GrandmaCost += Math.floor(GrandmaCost * .3);
-				} else {
-					alert("Oh No!  It appears you do not have enough cookies to purchase a Grandma.  A Grandma currently costs " + GrandmaCost + " which is " + (GrandmaCost - cookieClicks) + " more cookies than you have.")
-				}
-			}
+}
+			var FactoryCost = parseInt(localStorage.FactoryCost, 10);
+//==========================================================================
+//==================================Begin Compute Structure CPS=============================================================================
+             //Purchases Auto Clicker for Player and removes Cookies.
+function getAutoClicker() {
+	if (cookieClicks >= AutoClickerCost) {
+		AutoClickers++;
+		cookieClicks -= AutoClickerCost;
+		AutoClickerCost += Math.floor(AutoClickerCost *.3);
+			} else {
+				alert("Oh No! It appears you do not have enough cookies to purchase an Auto Clicker. An Auto Clicker currently costs " + AutoClickerCost + " which is " + (AutoClickerCost - cookieClicks) + " more cookies than you have.")
+					}
+				} 
+			//Purchase Grandma and remove Cookie Cost.
+function getGrandma() {
+	if (cookieClicks >= GrandmaCost) {
+		Grandmas++;
+		cookieClicks -= GrandmaCost;
+		GrandmaCost += Math.floor(GrandmaCost * .2);
+			}else {
+				alert("Oh No! It appears you do not have enough cookies to purchase a Grandma. A Grandma currently costs " + GrandmaCost + " which is " + (GrandmaCost - cookieClicks) + " more cookies than you have.")
+					}
+				}	
 			 //Purchase Farm and remove Cookie Cost.
-			function getFarm() {
-				if (cookieClicks >= FarmCost) {
-					Farms++;
-					cookieClicks -= FarmCost;
-					FarmCost += Math.floor(FarmCost * .3);
-				} else {
-					alert("Oh No!  It appears you do not have enough cookies to purchase a Farm.  A Farm currently costs " + FarmCost + " which is " + (FarmCost - cookieClicks) + " more cookies than you have.")
-				}
-			}
+function getFarm() {
+	if (cookieClicks >= FarmCost) {
+		Farms++;
+		cookieClicks -= FarmCost;
+		FarmCost += Math.floor(FarmCost * .2);
+			} else {
+				alert("Oh No! It appears you do not have enough cookies to purchase a Farm. A Farm currently costs " + FarmCost + " which is " + (FarmCost - cookieClicks) + " more cookies than you have.")
+					}
+				}	
 			 //Purchase Factory and remove Cookie Cost.
-			function getFactory() {
-				if (cookieClicks >= FactoryCost) {
-					Factories++;
-					cookieClicks -= FactoryCost;
-					FactoryCost += Math.floor(FactoryCost * .3);
-				} else {
-					alert("Oh No!  It appears you do not have enough cookies to purchase a Factory.  A Factory currently costs " + FactoryCost + " which is " + (FactoryCost - cookieClicks) + " more cookies than you have.")
+function getFactory() {
+	if (cookieClicks >= FactoryCost) {
+		Factories++;
+		cookieClicks -= FactoryCost;
+		FactoryCost += Math.floor(FactoryCost * .2);
+			} else {
+				alert("Oh No! It appears you do not have enough cookies to purchase a Factory. A Factory currently costs " + FactoryCost + " which is " + (FactoryCost - cookieClicks) + " more cookies than you have.")
 				}
 			}
-			 //Purchase Mine and remove COokie Cost.
-			function getMine() {
-				if (cookieClicks >= MineCost) {
-					Mines++;
-					cookieClicks -= MineCost;
-					MineCost += Math.floor(MineCost * .3)
-				} else {
-					alert("Oh No!  It appears you do not have enough cookies to purchase a Mine.  A Mine currently costs " + MineCost + " which is " + (MineCost - cookieClicks) + " more cookies than you have.")
+ 			//Purchase Mine and remove COokie Cost.
+function getMine() {
+	if (cookieClicks >= MineCost) {
+		Mines++;
+		cookieClicks -= MineCost;
+		MineCost += Math.floor(MineCost * .2)
+			} else {
+				alert("Oh No! It appears you do not have enough cookies to purchase a Mine. A Mine currently costs " + MineCost + " which is " + (MineCost - cookieClicks) + " more cookies than you have.")
 				}
 			}
-			 //Main Game loop updating Cookie Totals from AUTOCLICKER ONLY!
+			//Rests Game
+			function resetConfirm(){
+				var answer = confirm("Are you sure you wish to reset?  ALL progress will be lost FOREVER.");
+				if(answer){
+					 cookieClicks = 0;
+					 clickValue = 0;
+					 AutoClickers = 0;
+					 AutoClickerCost = 50;
+					Grandmas = 0;
+					GrandmaCost = 500;
+					Farms = 0;
+					FarmCost = 2500;
+					Factories = 0;
+					FactoryCost = 5000;
+				}
+			}
+			//Processes cookie click and adds it to total.
+       function cookieClicked(){
+		   cookieClicks++;
+	   }
+				//Main Game loop updating Cookie Totals from AUTOCLICKER ONLY!
 			var AutoClickTimer = setInterval(function() {
-				AutoClickCookie()
+			AutoClickCookie()
 			}, 2000);
-
-			function AutoClickCookie() {
-				cookieClicks += AutoClickers;
-			}
-			 //Main Game loop update Cookie Totals from ALL OTHER STRUCUTERS.
-			var AllStructureTimer = setInterval(function() {
-				StructureCookie
-			}, 1000)
-
-				function StructureCookie() {
-					cookieClicks += (Grandmas * 5);
-					cookieClicks += (Farms * 20);
-					cookieClicks += (Factories * 60);
-					cookieClicks += (Mines * 100);
+				function AutoClickCookie() {
+				cookieClicks = cookieClicks+parseInt((AutoClickers*1),10);
 				}
-				//Side Loop updating button costs and CPS
-			var CookieClickTimer = setInterval(function() {
-				updateCookie()
-			}, 100);
+ 				//Main Game loop update Cookie Totals from ALL OTHER STRUCUTERS.
+			var AllStructureTimer = setInterval(function() {
+			StructureCookie()
+			}, 1000)
+				function StructureCookie() {
+				cookieClicks += (Grandmas * 5);
+				cookieClicks += (Farms * 20);
+				cookieClicks += (Factories * 60);
+				cookieClicks += (Mines * 100);
+				}	
+                //Side Loop updating button costs and CPS
+            var CookieClickTimer = setInterval(function() {
+                updateCookie()
+            }, 100);
 
-			function updateCookie() {
-				//Calculate CPS
-				var CPS = (AutoClickers * .5) + (Grandmas * 5) + (Farms * 20) + (Factories * 60) + (Mines * 100);
-				document.getElementById("CookieAmount").innerHTML = cookieClicks + " cookies.";
-				document.getElementById("CookiePerSecond").innerHTML = CPS + " CPS.";
+            function updateCookie() {
+                //Calculate CPS
+
+                document.getElementById("CookieAmount").innerHTML = cookieClicks + " cookies.";
+
 				document.getElementById("AutoClickCookieCost").innerHTML = AutoClickerCost;
+				document.getElementById("AutoClickTotal").innerHTML = AutoClickers;
 				document.getElementById("GrandmaCookieCost").innerHTML = GrandmaCost;
+				document.getElementById("GrandmaTotal").innerHTML = Grandmas;
 				document.getElementById("FarmCookieCost").innerHTML = FarmCost;
+				document.getElementById("FarmTotal").innerHTML = Farms;
 				document.getElementById("FactoryCookieCost").innerHTML = FactoryCost;
+				document.getElementById("FactoryTotal").innerHTML = Factories;
 				document.getElementById("MineCookieCost").innerHTML = MineCost;
-			}
-			var CookieClickValueTimer = setInterval(function() {
-				updateCookieValue()
-			}, 100);
-		</script>
-	</div>
+				document.getElementById("MineTotal").innerHTML = Mines;
+            }
+        var saveGameLoop = setInterval(function(){saveGame()}, 100);
+            function saveGame(){
+                localStorage.cookieClicks = cookieClicks;
+				localStorage.clickValue = clickValue;
+				localStorage.AutoClickers = AutoClickers;
+				localStorage.AutoClickerCost = AutoClickerCost;
+				localStorage.Grandmas = Grandmas;
+				localStorage.GrandmaCost = GrandmaCost;
+				localStorage.Farms = Farms;
+				localStorage.FarmCost = FarmCost;
+				localStorage.Mines = Mines;
+				localStorage.MineCost = MineCost;
+            };
+        </script>
+    </div>
 </body>
 
 </html>
+
