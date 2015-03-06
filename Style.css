@@ -1,0 +1,25 @@
+body{
+	background-color: #005EFF;
+	opacity: 1.0;
+}
+#AutoClickerPurchase{
+	background-color: #D1B688;
+	border-radius: 15px;
+	position: absolute;
+	left: 92vw;
+	top: 1vh;
+}
+#GrandmaPurchase{
+	background-color: #D1B688;
+	border-radius: 15px;
+	position: absolute;
+	left: 92vw;
+	top: 7vh;
+}
+#FactoryPurchase{
+	background-color: #D1B688;
+	border-radius: 15px;
+	position: absolute;
+	left: 92vw;
+	top: 13vh;	
+}
